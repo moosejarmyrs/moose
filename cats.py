@@ -1,0 +1,2 @@
+catnames = []
+catcolors = []
