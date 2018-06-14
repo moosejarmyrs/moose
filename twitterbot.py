@@ -20,9 +20,10 @@ class Listener(StreamListener):
 	def on_data(self, data):
 		try:
 			with open("tweets.json", "a+") as f:
-				print("Tweet recieved @ " + str(datetime.datetime.now()) + ".")
+				print("Tweet recieved @ " + str(datetime.datetime.now()) + "\n https://twitter.com/anyuser/status/" + str(jsoned_data["id"]) + ".")
 				f.write(data)
-				api.send_direct_message(731173585323196416, text=str("Tweet recieved @ " + str(datetime.datetime.now()) + "."))
+				jsoned_data = json.loads(data)
+				api.send_direct_message(731173585323196416, text=str("Tweet recieved @ " + str(datetime.datetime.now()) + "\n https://twitter.com/anyuser/status/" + str(jsoned_data["id"]) + "."))
 				return True
 		except BaseException as e:
 			print("Error on_data: %s" %str(e))
